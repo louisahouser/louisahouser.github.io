@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Louisa Ellen Houser - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--bg:#f8f7f4;--surface:#fff;--ink:#1a1a1a;--ink-muted:#767676;--ink-faint:#b0b0b0;--accent:#2a5cff;--accent-light:#eef1ff;--border:#e8e5e0;--radius:4px;--nav-h:64px;}
+    html{scroll-behavior:smooth;}
+    body{font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6;}
+    nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:rgba(248,247,244,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;display:flex;align-items:center;padding:0 40px;gap:40px;}
+    .nav-logo{font-family:"DM Serif Display",serif;font-size:1.1rem;color:var(--ink);text-decoration:none;margin-right:auto;letter-spacing:-0.02em;}
+    .nav-links{display:flex;gap:32px;list-style:none;}
+    .nav-links a{font-family:"DM Mono",monospace;font-size:0.75rem;text-decoration:none;color:var(--ink-muted);letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;position:relative;}
+    .nav-links a::after{content:"";position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.2s;}
+    .nav-links a:hover{color:var(--ink);}
+    .nav-links a:hover::after{width:100%;}
+    main{padding-top:var(--nav-h);}
+    section{max-width:860px;margin:0 auto;padding:96px 40px;border-bottom:1px solid var(--border);}
+    section:last-child{border-bottom:none;}
+    .section-label{font-family:"DM Mono",monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:40px;display:flex;align-items:center;gap:12px;}
+    .section-label::after{content:"";flex:1;height:1px;background:var(--border);}
+    .hero-name{font-family:"DM Serif Display",serif;font-size:clamp(3rem,8vw,5.5rem);line-height:1.05;letter-spacing:-0.03em;margin-bottom:24px;}
+    .hero-name em{font-style:italic;color:var(--accent);}
+    .hero-bio{font-size:1.1rem;color:var(--ink-muted);max-width:560px;line-height:1.75;margin-bottom:40px;font-weight:300;}
+    .tag-row{display:flex;flex-wrap:wrap;gap:8px;}
+    .tag{font-family:"DM Mono",monospace;font-size:0.72rem;padding:5px 12px;border:1px solid var(--border);border-radius:100px;color:var(--ink-muted);background:var(--surface);}
+    .contact-row{margin-top:40px;display:flex;gap:20px;flex-wrap:wrap;}
+    .contact-row a{font-family:"DM Mono",monospace;font-size:0.78rem;color:var(--ink-muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+    .contact-row a:hover{color:var(--accent);}
+    .resume-block{margin-bottom:56px;}
+    .resume-block h3{font-family:"DM Serif Display",serif;font-size:1.15rem;margin-bottom:20px;}
+    .resume-entry{display:grid;grid-template-columns:140px 1fr;gap:0 24px;padding:20px 0;border-top:1px solid var(--border);}
+    .resume-entry:last-child{border-bottom:1px solid var(--border);}
+    .resume-date{font-family:"DM Mono",monospace;font-size:0.72rem;color:var(--ink-faint);padding-top:3px;}
+    .resume-role{font-weight:500;font-size:0.95rem;}
+    .resume-org{color:var(--ink-muted);font-size:0.88rem;margin-top:2px;}
+    .resume-desc{color:var(--ink-muted);font-size:0.88rem;margin-top:8px;line-height:1.6;font-weight:300;}
+    .skills-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+    .skill-pill{font-family:"DM Mono",monospace;font-size:0.7rem;padding:4px 10px;background:var(--accent-light);color:var(--accent);border-radius:3px;}
+    .resume-cta{margin-top:40px;}
+    .btn{display:inline-flex;align-items:center;gap:8px;font-family:"DM Mono",monospace;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;padding:12px 24px;border-radius:var(--radius);text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;}
+    .btn-primary{background:var(--ink);color:var(--bg);}
+    .btn-primary:hover{background:var(--accent);}
+    .project-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;transition:border-color 0.2s,box-shadow 0.2s;text-decoration:none;color:inherit;margin-bottom:2px;display:grid;}
+    .project-card:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light);}
+    .project-status{font-family:"DM Mono",monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:100px;white-space:nowrap;}
+    .status-active{background:#e8f5e9;color:#2e7d32;}
+    .status-past{background:var(--border);color:var(--ink-faint);}
+    .project-title{font-family:"DM Serif Display",serif;font-size:1.15rem;margin-bottom:8px;}
+    .project-desc{font-size:0.88rem;color:var(--ink-muted);line-height:1.65;font-weight:300;margin-bottom:14px;}
+    .project-tags{display:flex;flex-wrap:wrap;gap:6px;}
+    .project-tag{font-family:"DM Mono",monospace;font-size:0.65rem;padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);}
+    .projects-grid{display:grid;gap:2px;}
+    .books-currently{margin-bottom:56px;}
+    .books-currently h3,.book-reviews h3{font-family:"DM Serif Display",serif;font-size:1.1rem;margin-bottom:20px;}
+    .reading-shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;}
+    .book-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color 0.2s;}
+    .book-card:hover{border-color:var(--ink-muted);}
+    .book-cover{width:100%;aspect-ratio:2/3;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-family:"DM Serif Display",serif;font-size:0.9rem;color:var(--accent);padding:20px;text-align:center;line-height:1.3;background-size:cover;background-position:center;}
+    .book-info{padding:14px 16px;border-top:1px solid var(--border);}
+    .book-title{font-weight:500;font-size:0.88rem;margin-bottom:3px;}
+    .book-author{font-size:0.78rem;color:var(--ink-muted);font-family:"DM Mono",monospace;}
+    .reading-progress{margin-top:8px;height:2px;background:var(--border);border-radius:1px;overflow:hidden;}
+    .reading-progress-bar{height:100%;background:var(--accent);border-radius:1px;}
+    .review-entry{display:grid;grid-template-columns:80px 1fr;gap:24px;padding:24px 0;border-top:1px solid var(--border);align-items:start;}
+    .review-entry:last-child{border-bottom:1px solid var(--border);}
+    .review-cover-thumb{width:80px;aspect-ratio:2/3;background:var(--border);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--ink-faint);font-family:"DM Mono",monospace;text-align:center;background-size:cover;background-position:center;}
+    .review-title{font-weight:500;font-size:0.95rem;margin-bottom:2px;}
+    .review-author{font-size:0.78rem;color:var(--ink-muted);font-family:"DM Mono",monospace;margin-bottom:8px;}
+    .star-row{display:flex;gap:2px;margin-bottom:10px;}
+    .star{color:#f4a228;font-size:13px;line-height:1;}
+    .star.empty{color:var(--border);}
+    .review-text{font-size:0.88rem;color:var(--ink-muted);line-height:1.7;font-weight:300;}
+    .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+    .photo-item{aspect-ratio:4/3;background:var(--border);border-radius:var(--radius);overflow:hidden;position:relative;cursor:pointer;}
+    .photo-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease;}
+    .photo-item:hover img{transform:scale(1.04);}
+    .photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ink-faint);font-family:"DM Mono",monospace;font-size:0.65rem;letter-spacing:0.06em;text-transform:uppercase;}
+    .photo-caption-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.5));padding:20px 14px 12px;opacity:0;transition:opacity 0.25s;}
+    .photo-item:hover .photo-caption-overlay{opacity:1;}
+    .photo-caption-text{font-size:0.75rem;color:#fff;font-family:"DM Mono",monospace;}
+    .photo-item.wide{grid-column:span 2;}
+    footer{max-width:860px;margin:0 auto;padding:40px 40px 60px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+    footer p{font-family:"DM Mono",monospace;font-size:0.7rem;color:var(--ink-faint);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+    .fade-up{opacity:0;animation:fadeUp 0.6s ease forwards;}
+    .fade-up:nth-child(1){animation-delay:0.1s;}.fade-up:nth-child(2){animation-delay:0.2s;}.fade-up:nth-child(3){animation-delay:0.3s;}.fade-up:nth-child(4){animation-delay:0.4s;}
+    @media(max-width:640px){nav{padding:0 20px;gap:16px;}.nav-links{gap:16px;}section{padding:64px 20px;}.resume-entry{grid-template-columns:1fr;}.resume-date{margin-bottom:4px;}.photo-grid{grid-template-columns:repeat(2,1fr);}.photo-item.wide{grid-column:span 1;}footer{padding:32px 20px 48px;}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#about" class="nav-logo">Louisa Ellen Houser</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#resume">Articles</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#books">Books</a></li>
+    <li><a href="#photos">Photos</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 &mdash; About</div>
+  <div style="display:flex; gap:48px; align-items:flex-start; margin-bottom:32px;">
+    <img src="images/louisaellenhouser.JPG" alt="Louisa Ellen Houser"
+         style="width:285px; height:285px; object-fit:cover; border-radius:50%; flex-shrink:0;">
+    <h1 class="hero-name fade-up">Louisa<br>Ellen<br>Houser<br></h1>
+  </div>
+  <p class="hero-bio fade-up">Recent college graduate living in Albuquerque, New Mexico, looking to gain professional 
+    experience in software engineering, data science, machine learning or any other applied technological profession. 
+    As a computer scientist, I strongly believe in the power of human connection, the opportunity that comes with being wrong, 
+    and being a lifelong learner. Please feel free to reach out, even if just to share your story.</p>
+  <div class="tag-row fade-up">
+    <span class="tag">Python</span>
+    <span class="tag">C++</span>
+    <span class="tag">Fortran</span>
+    <span class="tag">Project Management</span>
+    <span class="tag">Machine Learning</span>
+    <span class="tag">Computer Hardware</span>
+  </div>
+  <div class="contact-row fade-up">
+    <a href="mailto:lehjobsearch@outlook.com">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      lehjobsearch@outlook.com
+    </a>
+    <a href="https://github.com/louisahouser" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+      GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/louisa-houser/" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="section-label">02 &mdash; Resume</div>
+
+  <div class="resume-block">
+    <h3>Experience</h3>
+    <div class="resume-entry">
+      <div class="resume-date">Nov. 2023 &mdash; <br>Dec. 2025</div>
+      <div>
+        <div class="resume-role">Undergraduate Research Student</div>
+        <div class="resume-org">Mercer School of Engineering</div>
+        <div class="resume-desc">Lead for multiple projects regarding machine learning, computer hardware, and data collection.</div>
+      </div>
+    </div>
+    <div class="resume-entry">
+      <div class="resume-date">Aug. 2024 &mdash; <br> May 2025</div>
+      <div>
+        <div class="resume-role">Fabrication Lab Teaching Assistant</div>
+        <div class="resume-org">Mercer School of Engineering</div>
+        <div class="resume-desc">TA for students interested in 3D printing, laser cutting, and poster printing.</div>
+      </div>
+    </div>
+    <div class="resume-entry">
+      <div class="resume-date">May 2024 &mdash; <br> Aug. 2024</div>
+      <div>
+        <div class="resume-role">Mercer Undergraduate Research Scholar</div>
+        <div class="resume-org">MURS / Mercer School of Engineering</div>
+        <div class="resume-desc">Selected for program to be brought on for a paid summer research position. 
+            <br> Guided educators in Atlanta, GA through 4-day ML-Bots curriculum
+            <br> Attended AHAC 2024 Conference on Stratospheric Ballooning
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="resume-block">
+    <h3>Education</h3>
+    <div class="resume-entry">
+      <div class="resume-date">Aug. 2022 &mdash; <br> Dec. 2025</div>
+      <div>
+        <div class="resume-role">B.S. in Computer Science</div>
+        <div class="resume-org">Mercer University</div>
+        <div class="resume-desc">Magna Cum Laude
+            <br> Minor in Mathematics
+            <br> Service Learning, Project Management, Machine Learning
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="resume-block">
+    <h3>Skills</h3>
+    <div class="skills-grid">
+      <span class="skill-pill">Python</span>
+      <span class="skill-pill">C++</span>
+      <span class="skill-pill">Linux</span>
+      <span class="skill-pill">Git</span>
+      <span class="skill-pill">Machine Learning</span>
+      <span class="skill-pill">Fortran</span>
+      <span class="skill-pill">SQL</span>
+    </div>
+    <h3><br>Interpersonal</h3>
+    <div clas="skills-grid">
+        <span class="skill-pill">Flexibility</span>
+        <span class="skill-pill">Leadership</span>
+        <span class="skill-pill">Honesty</span>
+        <span class="skill-pill">Teamwork</span>
+        <span class="skill-pill">Determination</span>
+    </div>
+  </div>
+
+  <div class="resume-cta">
+    <a href="louisa_ellen_houser_resume.pdf" class="btn btn-primary" download target="_blank">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download CV
+    </a>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section id="articles">
+  <div class="section-label">03 &mdash; Articles</div>
+
+  <div class="projects-grid">
+
+    <a href="https://den.mercer.edu/binary-bears-place-first-in-regional-programming-competition/" class="project-card" target="_blank"
+    style="grid-template-columns:120px 1fr auto; align-items:center;">
+        <img src="images/Binary-Bears-CCSC.jpg" alt="Binary Bears place first in regional programming competition"
+            style="width:120px; height:80px; object-fit:cover; border-radius:4px;">
+        <div>
+            <div class="project-title">Binary Bears place first in regional programming competition
+            </div>
+            <div class="project-tags">
+                <span class="project-tag">Binary Bears</span>
+                <span class="project-tag">Mercer Univeristy</span>
+                <span class="project-tag">Second Team</span>
+                <span class="project-tag">the Den</span>            </div>
+        </div>
+        <span class="project-status status-past">December 22, 2025</span>
+    </a>
+
+    <a href="https://den.mercer.edu/the-future-is-in-ai-a-mercer-professor-is-preparing-the-next-generation/" class="project-card" target="_blank"
+    style="grid-template-columns:120px 1fr auto; align-items:center;">
+        <img src="images/ml-bots-3-1024x683.jpg" alt="The future is in AI. A Mercer professor is preparing the next generation
+        "
+            style="width:120px; height:80px; object-fit:cover; border-radius:4px;">
+        <div>
+            <div class="project-title">The future is in AI. A Mercer professor is preparing the next generation
+            </div>
+            <div class="project-tags">
+                <span class="project-tag">AI</span>
+                <span class="project-tag">Machine Learning</span>
+                <span class="project-tag">Mercer Univeristy</span>
+                <span class="project-tag">NASA</span>
+                <span class="project-tag">Georgia Tech</span>            </div>
+        </div>
+        <span class="project-status status-past">June 25, 2024</span>
+    </a>
+
+    <a href="https://den.mercer.edu/mercer-students-teach-app-development-in-south-africa/" class="project-card" target="_blank"
+    style="grid-template-columns:120px 1fr auto; align-items:center;">
+        <img src="images/app_dev_trip_SA.jpg" alt="Mercer students teach app development in South Africa"
+            style="width:120px; height:80px; object-fit:cover; border-radius:4px;">
+        <div>
+            <div class="project-title">Mercer students teach app development in South Africa</div>
+            <div class="project-tags">
+                <span class="project-tag">App Development</span>
+                <span class="project-tag">Mercer Univeristy</span>
+                <span class="project-tag">South Africa</span>
+                <span class="project-tag">the Den</span>            </div>
+        </div>
+        <span class="project-status status-past">May 8, 2023</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">04 &mdash; Projects</div>
+  <div class="projects-grid">
+
+    <a href="https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/" class="project-card" target="_blank">
+      <div>
+        <div class="project-title">Raspberry Pi Zero 2 W</div>
+        <div class="project-desc">Building an interactive goal bingo board for my desk. 
+            <br>Builds comfortability with Raspberry Pi as well as keeps programming logic engaged.
+        </div>
+        <div class="project-tags">
+          <span class="project-tag">Raspberry Pi</span>
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Creativity</span>
+          <span class="project-tag">Goals & Growth</span>
+        </div>
+      </div>
+      <span class="project-status status-active">Active</span>
+    </a>
+
+    <!-- <a href="#" class="project-card">
+      <div>
+        <div class="project-title">Another Current Project</div>
+        <div class="project-desc">Describe what you are building, what stage it is in, and any interesting technical decisions.</div>
+        <div class="project-tags">
+          <span class="project-tag">React</span>
+          <span class="project-tag">Node.js</span>
+        </div>
+      </div>
+      <span class="project-status status-active">Active</span>
+    </a> -->
+
+    <a href="https://ceismc.gatech.edu/studentprograms/nasa-ml-bots" class="project-card" target="_blank">
+      <div>
+        <div class="project-title">ML-Bots</div>
+        <div class="project-desc">NASA-funded machine learning curriculum built with Georgia Tech for educators across 
+            the Southeast to implement in their classrooms.
+        </div>
+        <div class="project-tags">
+          <span class="project-tag">Machine Learning</span>
+          <span class="project-tag">Pedigogy</span>
+          <span class="project-tag">STEM</span>
+          <span class="project-tag">NASA</span>
+          <span class="project-tag">Mercer University</span>
+          <span class="project-tag">Georgia Tech</span>
+        </div>
+      </div>
+      <span class="project-status status-past">Completed</span>
+    </a>
+
+    <a href="https://github.com/louisahouser/fall24_poker" class="project-card" target="_blank">
+        <div>
+          <div class="project-title">Poker Project in 10 Languages</div>
+          <div class="project-desc">Programmed poker for class assignment in Fortran, C++, C#, Go, Java, Julia,
+            Lisp, Perl, Python, and Rust.
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Fortran</span>
+            <span class="project-tag">C++</span>
+            <span class="project-tag">C#</span>
+            <span class="project-tag">Go</span>
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Perl</span>
+            <span class="project-tag">Rust</span>
+            <span class="project-tag">Julia</span>
+            <span class="project-tag">Lisp</span>
+            <span class="project-tag">Mercer University</span>
+          </div>
+        </div>
+        <span class="project-status status-past">Completed</span>
+      </a>
+
+    <a href="https://www.nasa.gov/learning-resources/nasa-selects-student-teams-for-high-flying-balloon-science/" class="project-card" target="_blank">
+      <div>
+        <div class="project-title">National Eclipse Ballooning Project</div>
+        <div class="project-desc"><b>(NEBP)</b>
+            <br><br>High altitude ballooning with the purpose of collecting data on eclipses.
+            <br>Traveled to St. Louis in April 2024 to record data on the Great North American Eclipse.
+        </div>
+        <div class="project-tags">
+          <span class="project-tag">NEBP</span>
+          <span class="project-tag">HAARP</span>
+          <span class="project-tag">April 8, 2024</span>
+          <span class="project-tag">Mercer Engineering</span>
+        </div>
+      </div>
+      <span class="project-status status-past">Completed</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section id="books">
+  <div class="section-label">05 &mdash; Books</div>
+
+  <div class="books-currently">
+    <h3>Currently Reading</h3>
+    <div class="reading-shelf">
+      <div class="book-card">
+        <div class="book-cover" style="background-image:url('images/cyber.jpeg');">
+        </div>
+        <div class="book-info">
+          <div class="book-title">How Cybersecurity Really Works</div>
+          <div class="book-author">Sam Grubb</div>
+          <div class="reading-progress"><div class="reading-progress-bar" style="width:20%"></div></div>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-cover" style="background-image:url('images/Circe.jpg');">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Circe</div>
+          <div class="book-author">Madeline Miller</div>
+          <div class="reading-progress"><div class="reading-progress-bar" style="width:5%"></div></div>
+        </div>
+      </div>
+
+  <div class="book-reviews">
+    <h3>Reviews</h3>
+    <div class="review-entry">
+        <div class="review-cover-thumb" style="background-image:url('images/superbloom.jpg');">
+        </div>
+        <div>
+        <div class="review-title">Superbloom: How Technologies of Connection Tear Us Apart</div>
+        <div class="review-author">Nicholas Carr &middot; 2025</div>
+        <div class="star-row">
+          <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+        </div>
+        <div class="review-text">A wonderful read! Truly provokes the question, does social media bring us closer or farther apart. 
+            If you work in the tech industry in ANY capacity, or want a book that will both teach and challenge you, read Superbloom!
+        </div>
+      </div>
+    <!-- </div>
+    <div class="review-entry">
+        <div class="review-title">The Glass Castle</div>
+      <div>
+        <div class="review-title">The Glass Castle</div>
+        <div class="review-author">Author Name &middot; 2023</div>
+        <div class="star-row">
+          <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span>
+        </div>
+        <div class="review-text">Your review here.</div>
+      </div>
+    </div>
+    <div class="review-entry">
+      <div class="review-cover-thumb">cover</div>
+      <div>
+        <div class="review-title">Book Title</div>
+        <div class="review-author">Author Name &middot; Year</div>
+        <div class="star-row">
+          <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span><span class="star empty">&#9733;</span>
+        </div>
+        <div class="review-text">Your review here.</div>
+      </div>
+    </div>
+  </div> -->
+</section>
+
+<!-- PHOTOS -->
+<section id="photos">
+  <div class="section-label">06 &mdash; Photos</div>
+  <div class="photo-grid">
+
+    <div class="photo-item wide">
+        <img src="images/NEBP1.jpg" alt="Setting up for solar eclipse ballooning on April 8th, 2024">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Setting up for solar eclipse ballooning on April 8th, 2024</div></div>
+    </div>
+
+    <div class="photo-item">
+        <img src="images/MLBOT.jpg" alt="NVIDIA JetBot Louisa Built for ML-Bots">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">NVIDIA JetBot Louisa Built for ML-Bots Project</div></div>
+    </div>
+
+    <div class="photo-item">
+        <img src="images/SAteaching2.jpg" alt="Month long trip to Cape Town to teach computer programming - Summer of 2025">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Month long trip to Cape Town to teach computer programming - Summer of 2025</div></div>
+    </div>
+
+    <div class="photo-item">
+        <img src="images/IMG_6270 (1).JPG" alt="Both Teams at Binary Bears Representing Mercer University">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Both Teams at Binary Bears Representing Mercer University</div></div>
+    </div>
+
+    <div class="photo-item">
+        <img src="images/SAteaching.jpg" alt="Month long trip to Cape Town to teach computer programming - Summer of 2025">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Month long trip to Cape Town to teach computer programming - Summer of 2025</div></div>
+    </div>
+
+    <div class="photo-item">
+        <img src="images/NEBP2.jpg" alt="Setting up for solar eclipse ballooning on April 8th, 2024">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Setting up for solar eclipse ballooning on April 8th, 2024</div></div>
+    </div>
+
+    <div class="photo-item wide">
+        <img src="images/BearExhibition1.jpg" alt="Presenting on ML-Bots at Bear Day">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Presenting on ML-Bots at Bear Day</div></div>
+    </div>
+
+    <div class="photo-item">
+        <img src="images/a100insta2.jpg" alt="Installing an A100 GPU to Supercomputer">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Installing an A100 GPU to Supercomputer</div></div>
+    </div>
+
+    <div class="photo-item">
+        <img src="images/NEBP3.jpg" alt="Solar Eclipse - April 8th, 2024">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Solar Eclipse - April 8th, 2024</div></div>
+    </div>
+
+    <div class="photo-item ">
+        <img src="images/SA1.JPG" alt="Group photo from teaching app development in SA - March 2023">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Group photo from teaching app development in SA - March 2023</div></div>
+    </div>
+    
+    <div class="photo-item wide">
+        <img src="images/PXL_20251108_152728912.MP (1).jpg" alt="Competition Day for Binary Bears - November 2025">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Competition Day for Binary Bears - November 2025</div></div>
+    </div>
+
+    <div class="photo-item ">
+        <img src="images/SPRINGBOKgame.jpg" alt="Rugby Match from Summer 2025 trip to Cape Town (my pride and joy)">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Rugby Match from Summer 2025 trip to Cape Town (my pride and joy)</div></div>
+    </div>
+
+    <div class="photo-item ">
+        <img src="images/AHAC.JPG" alt="Learning about high altitude ballooning at AHAC 2024 in Minneapolis, MN">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Learning about high altitude ballooning at AHAC 2024 in Minneapolis, MN</div></div>
+    </div>
+
+    <div class="photo-item wide">
+        <img src="images/DC1.jpg" alt="Week long trip to DC to speak to Georgia Congressional Representatives about ML-Bots and GSGC">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Week long trip to DC to speak to Georgia Congressional Representatives about ML-Bots and GSGC</div></div>
+    </div>
+    
+    <div class="photo-item ">
+        <img src="images/AHAC.JPG" alt="Learning about high altitude ballooning at AHAC 2024 in Minneapolis, MN">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Learning about high altitude ballooning at AHAC 2024 in Minneapolis, MN</div></div>
+    </div>
+
+    <div class="photo-item ">
+        <img src="images/NEBP4.JPG" alt="Dry Run Setup in St. Louis for April 2024 Solar Eclipse">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Dry Run Setup in St. Louis for April 2024 Solar Eclipse</div></div>
+    </div>
+    
+    <div class="photo-item ">
+        <img src="images/AHAC2.JPG" alt="Presenting on high altitude ballooning at AHAC 2024 in Minneapolis, MN">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Presenting on high altitude ballooning at AHAC 2024 in Minneapolis, MN</div></div>
+    </div>
+
+    <div class="photo-item wide">
+        <img src="images/DC2.jpg" alt="Presenting at NASA's National Space Grant Directors Meeting in February 2025">
+        <div class="photo-caption-overlay"><div class="photo-caption-text">Presenting at NASA's National Space Grant Directors Meeting in February 2025</div></div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Last Updated: March 3, 2026 | Louisa Ellen Houser</p>
+</footer>
+
+</body>
+</html>
